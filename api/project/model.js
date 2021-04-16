@@ -1,7 +1,15 @@
 const db = require('../../data/dbConfig');
 
 async function find() {
-    return db("projects")
+    let data = await db("projects")
+    for(let i = 0; i < data.length; i++){
+        if(data[i].project_completed === 0){
+            data = {...data[i], project_completed: false}
+        }else{
+            data = {...data[i], project_completed: true}
+        }
+    }
+    return data
 }
 
 async function insert(req_body) {
