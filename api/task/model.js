@@ -20,21 +20,20 @@ async function find() {
         }
         try{
             //get the project, by id, and give tasks return object the project name and description
-            const projById = await Project.findById(data[i].project_id)
-            const tasks = {
-                task_id: data[0].task_id,
-                task_description: data[0].task_description,
-                task_notes: data[0].task_notes,
-                task_completed: data[0].task_completed,
-                project_name: projById[i].project_name,
-                project_description: projById[i].project_description
+            let projById = await Project.findById(data[i].project_id)
+            data[i] = {
+                task_id: data[i].task_id,
+                task_description: data[i].task_description,
+                task_notes: data[i].task_notes,
+                task_completed: data[i].task_completed,
+                project_name: projById[0].project_name,
+                project_description: projById[0].project_description
             }
-            return tasks
-            
-        }catch(err){
-            console.log(err.message)
+        }catch(e){
+            console.log(e.message, e)
         }
     }
+    return data
 }
 
 //get task by id AND change project completed from binary 1, 0 to true, false
