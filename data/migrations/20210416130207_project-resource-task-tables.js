@@ -17,13 +17,31 @@ exports.up = function(knex) {
         tbl.string("task_description", 128).notNullable()
         tbl.string("task_notes", 128)
         tbl.boolean("task_completed").defaultTo(0)
-        //foreign key below
+        //foreign key
         tbl.integer("project_id")
             .notNullable()
             .unsigned() //cannot be negative
             .references("project_id")
             .inTable("projects")
             .onDelete("RESTRICT") //safe delete restriction
+    })
+    //this table connects a resource and a project
+    .createTable("project_resources", tbl =>{
+        tbl.increments("project_resources_id")
+        //foreign key
+        tbl.integer("project_id")
+            .notNullable()
+            .unsigned()
+            .references("project_id")
+            .inTable("projects")
+            .onDelete("RESTRICT")
+        //foreign key
+        tbl.integer("resource_id")
+            .notNullable()
+            .unsigned()
+            .references("resource_id")
+            .inTable("resources")
+            .onDelete("RESTRICT")
     })
 };
 
