@@ -1,5 +1,15 @@
 const db = require('../../data/dbConfig');
 
-module.exports = {
+async function find() {
+
+}
+
+async function insert() {
     
+}
+
+
+module.exports = {
+    find,
+    insert
 }
