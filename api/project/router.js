@@ -11,9 +11,19 @@ router.get('/', async (req, res, next) =>{
     }
 })
 
+router.get('/:id', async (req, res, next) =>{
+    try{
+        const projectById = await Project.findById(req.params.id)
+        res.status(200).json(projectById)
+    }catch(err){
+        next(err)
+    }
+})
+
 router.post('/', mw.validateProject, async (req, res, next) =>{
     try{
-        const newProject = await Project.insert(req.body)
+        const newProjectId = await Project.insert(req.body)
+        const newProject = await Project.findById(newProjectId)
         res.status(201).json(newProject)
     }catch(err){
         next(err)

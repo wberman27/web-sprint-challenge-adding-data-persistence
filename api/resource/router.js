@@ -11,9 +11,19 @@ router.get('/', async (req, res, next) =>{
     }
 })
 
+router.get('/:id', async (req, res, next) =>{
+    try{
+        const resourceById = await Resource.findById(req.params.id)
+        res.status(200).json(resourceById)
+    }catch(err){
+        next(err)
+    }
+})
+
 router.post('/', mw.validateResource, async (req, res, next) =>{
     try{
-        const newResource = await Resource.insert(req.body)
+        const newResourceId = await Resource.insert(req.body)
+        const newResource = await Resource.findById(newResourceId)
         res.status(201).json(newResource)
     }catch(err){
         next(err)
