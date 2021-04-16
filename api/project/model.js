@@ -3,10 +3,16 @@ const db = require('../../data/dbConfig');
 async function find() {
     let data = await db("projects")
     for(let i = 0; i < data.length; i++){
-        if(data[i].project_completed === 0){
-            data = {...data[i], project_completed: false}
+        if(!data){
+            data = []
+            return data
         }else{
-            data = {...data[i], project_completed: true}
+            if(data[i].project_completed === 0){
+                data[i] = {...data[i], project_completed: false}
+               
+            }else{
+                data[i] = {...data[i], project_completed: true}
+            }
         }
     }
     return data
