@@ -1,4 +1,5 @@
 const db = require('../../data/dbConfig');
+const Project = require('../project/model')
 
 async function find() {
     let data = await db("tasks")
@@ -14,8 +15,24 @@ async function find() {
                 data[i] = {...data[i], task_completed: true}
             }
         }
+        try{
+            const projById = await Project.findById(data[i].project_id)
+            console.log(projById)
+            const tasks = {
+                task_id: data[0].task_id,
+                task_description: data[0].task_description,
+                task_notes: data[0].task_notes,
+                task_completed: data[0].task_completed,
+                project_name: projById[i].project_name,
+                project_description: projById[i].project_description
+            }
+            return tasks
+
+        }catch(err){
+            console.log(err.message)
+        }
     }
-    return data
+    // return data
 }
 
 async function findById(id){
