@@ -18,6 +18,7 @@ async function find() {
     return data
 }
 
+//get project by id AND change project completed from binary 1, 0 to true, false
 async function findById(id){
     let data = await db("projects")
     .where("project_id", id)
