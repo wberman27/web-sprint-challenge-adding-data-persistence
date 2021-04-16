@@ -115,11 +115,11 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 1. Explain the difference between Relational Databases and SQL.
 
-Relational Databases do this. SQL does this.
+SQL is a relational database, which differs from a NOSQL or a document/non-relational database that holds all data on one table or graph instead of a multi table structure, like SQL.
 
 2. Why do tables need a Primary Key?
 
-Tables need a primary key to uniquely identify what is being represented in the table's data.
+Tables need a primary key to uniquely identify what is being represented in the table's records.
 
 3. What is the name given to a table column that references the Primary Key on another table?
 
@@ -127,6 +127,6 @@ A foreign key.
 
 4. What do we need in order to have a _many to many_ relationship between two tables?
 
-In order to have a many to many relationship between two tables you must use a junction or appointment table that uses their primary keys.
+In order to have a many to many relationship between two tables you must use a junction table that uses their primary keys.
 
 
