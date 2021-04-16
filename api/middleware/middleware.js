@@ -1,6 +1,6 @@
 const validateResource = (req, res, next) =>{
     try{
-        if(!req.body.resource_description){
+        if(!req.body.resource_name){
             res.status(400).json({message: "resource_name is required."})
         }else{
             next()
@@ -13,7 +13,6 @@ const validateResource = (req, res, next) =>{
 const validateProject = (req, res, next) =>{
     try{
         if(!req.body.project_name){
-            console.log(req.body)
             res.status(400).json({message: "project_name is required."})
         }else{
             next()

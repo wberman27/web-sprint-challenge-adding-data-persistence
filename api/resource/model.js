@@ -4,8 +4,8 @@ async function find() {
     return db("resources")
 }
 
-async function insert() {
-    
+async function insert(req_body) {
+    return db("resources").insert(req_body)
 }
 
 
